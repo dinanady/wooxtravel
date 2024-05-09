@@ -2,20 +2,29 @@
 require_once "../includes/header.php";
 require_once "../config/config.php";
 
-
-
+$errorMessageName="";
+$errorMessageemail="";
+$errorMessagepass="";
 if(isset($_POST["submit"])){
   $username= $_POST["username"];
   $email =$_POST['email'];
   $password =$_POST["password"];
+  $hahpasswd =sha1($password);
  if(empty($username)||empty($email)||empty($password)){
     
-  echo"<p class='text-danger'>Please enter all data </p> ";
+ if(empty($username)){
+  $errorMessageName="Please enter Your Name ";
+ }
+ if(empty($email)){
+  $errorMessageemail="Please enter Your Email";
+ }
 
-
+ if(empty($password)){
+  $errorMessagepass="Please enter Password";
+ }
    }else{
-    echo"<script>alert('please enter data $username ,$email,$password');</script>";
-    echo"<p class='text-danger'>Please enter all data </p> ";
+    echo"<script>alert('please enter data $username ,$email,$hahpasswd');</script>";
+    
    }
 }
 
@@ -35,20 +44,23 @@ if(isset($_POST["submit"])){
                 <fieldset>
                     <label for="Name" class="form-label">Username</label>
                     <input type="text" name="username" class="username" placeholder="username" autocomplete="on" >
+                    <?php if(!empty($errorMessageName)) echo "<p class='text-danger'>$errorMessageName</p>"; ?>
                 </fieldset>
               </div>
 
               <div class="col-md-12">
                   <fieldset>
                       <label for="Name" class="form-label">Your Email</label>
-                      <input type="text" name="email" class="email" placeholder="email" autocomplete="on" >
+                      <input type="email" name="email" class="email" placeholder="email" autocomplete="on" >
+                      <?php if(!empty($errorMessageemail)) echo "<p class='text-danger'>$errorMessageemail</p>"; ?>
                   </fieldset>
               </div>
            
               <div class="col-md-12">
                 <fieldset>
                     <label for="Name" class="form-label">Your Password</label>
-                    <input type="text" name="password" class="password" placeholder="password" autocomplete="on" >
+                    <input type="password" name="password" class="password" placeholder="password" autocomplete="on" >
+                    <?php if(!empty($errorMessagepass)) echo "<p class='text-danger'>$errorMessagepass</p>"; ?>
                 </fieldset>
               </div>
               <div class="col-lg-12">                        

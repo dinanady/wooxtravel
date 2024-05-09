@@ -1,7 +1,7 @@
 
 <?php
 
-define("AppUrl","http://localhost/travel%20project/wooxtravel-/wooxtravel")
+define("AppUrl","http://localhost/travel/wooxtravel/wooxtravel");
 ?>
 
 <!DOCTYPE html>
