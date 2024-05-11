@@ -16,7 +16,8 @@ define("password","");
 
 // connection by using pdo
  
-$connection =new PDO("mysql:host=".HOST.";dbname".DBNAME."",USER,password);
+$connection = new PDO("mysql:host=".HOST.";dbname=".DBNAME, USER, password);
+
 
 
 // if($connection){

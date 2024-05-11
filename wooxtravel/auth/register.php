@@ -1,6 +1,7 @@
 <?php
-require_once "../includes/header.php";
+// require_once "../includes/header.php";
 require_once "../config/config.php";
+require_once "../config/signup.php";
 
 $errorMessageName="";
 $errorMessageemail="";
@@ -23,7 +24,15 @@ if(isset($_POST["submit"])){
   $errorMessagepass="Please enter Password";
  }
    }else{
-    echo"<script>alert('please enter data $username ,$email,$hahpasswd');</script>";
+    try{
+      $person=new register($username,$email,$hahpasswd);
+      $person->createUser();
+     echo"<script>alert('succsesful connect  ');</script>";
+    }
+    catch(Exception $e)
+    {
+        echo $e->getMessage();
+    }
     
    }
 }
