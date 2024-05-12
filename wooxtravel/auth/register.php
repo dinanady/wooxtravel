@@ -1,40 +1,9 @@
 <?php
-// require_once "../includes/header.php";
-require_once "../config/config.php";
-require_once "../config/signup.php";
+require_once "../includes/header.php";
 
-$errorMessageName="";
-$errorMessageemail="";
-$errorMessagepass="";
-if(isset($_POST["submit"])){
-  $username= $_POST["username"];
-  $email =$_POST['email'];
-  $password =$_POST["password"];
-  $hahpasswd =sha1($password);
- if(empty($username)||empty($email)||empty($password)){
-    
- if(empty($username)){
-  $errorMessageName="Please enter Your Name ";
- }
- if(empty($email)){
-  $errorMessageemail="Please enter Your Email";
- }
-
- if(empty($password)){
-  $errorMessagepass="Please enter Password";
- }
-   }else{
-    try{
-      $person=new register($username,$email,$hahpasswd);
-      $person->createUser();
-     echo"<script>alert('succsesful connect  ');</script>";
-    }
-    catch(Exception $e)
-    {
-        echo $e->getMessage();
-    }
-    
-   }
+require_once "../config/session_config.php";
+if($_SESSION["user"]){
+  header("location:../index.php");
 }
 
 ?>
@@ -44,16 +13,29 @@ if(isset($_POST["submit"])){
       <div class="row">
         
         <div class="col-lg-12">
-          <form id="reservation-form" name="gs" method="post" role="search" action="register.php">
+          <form id="reservation-form" name="gs" method="post" role="search" action="../Controllers/registration.php">
             <div class="row">
               <div class="col-lg-12">
                 <h4>Register</h4>
               </div>
+              <?php
+              if (isset($_SESSION["errors"])) {
+                echo "<ul>";
+                foreach ($_SESSION["errors"] as $errorMessage) {
+                    echo "<li>$errorMessage</li>";
+                }
+               
+                echo "</ul>";
+                // Clear the errors from session after displaying them
+                unset($_SESSION["errors"]);
+            }
+           
+            ?>
               <div class="col-md-12">
                 <fieldset>
                     <label for="Name" class="form-label">Username</label>
                     <input type="text" name="username" class="username" placeholder="username" autocomplete="on" >
-                    <?php if(!empty($errorMessageName)) echo "<p class='text-danger'>$errorMessageName</p>"; ?>
+                   
                 </fieldset>
               </div>
 

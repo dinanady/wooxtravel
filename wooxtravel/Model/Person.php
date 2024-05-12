@@ -1,6 +1,6 @@
 <?php
-require_once ("config.php");
-class register {
+require_once ("../config/config.php");
+class Person {
 
     public $username;
     public $email;
@@ -22,6 +22,17 @@ class register {
         $stm->bindParam(3, $this->password);
         $stm->execute();
     }
+
+    public function getuserByEmail($email){
+        global $connection;
+        $sql = "SELECT email FROM users WHERE email = :email";
+        $stmt = $connection->prepare($sql);
+        $stmt->bindParam(":email", $email);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result; 
+    }
+    
     
 }
 

@@ -94,7 +94,7 @@ require_once "includes/header.php";
                   </div>
                   <p>Lorem ipsum dolor sit amet dire consectetur adipiscing elit.</p>
                   <div class="main-button">
-                    <a href="reservation.html">Make a Reservation</a>
+                    <a href="reservation.php">Make a Reservation</a>
                   </div>
                 </div>
               </div>
@@ -125,7 +125,7 @@ require_once "includes/header.php";
                   </div>
                   <p>Lorem ipsum dolor sit amet dire consectetur adipiscing elit.</p>
                   <div class="main-button">
-                    <a href="reservation.html">Make a Reservation</a>
+                    <a href="reservation.php">Make a Reservation</a>
                   </div>
                 </div>
               </div>
@@ -156,7 +156,7 @@ require_once "includes/header.php";
                   </div>
                   <p>Lorem ipsum dolor sit amet dire consectetur adipiscing elit.</p>
                   <div class="main-button">
-                    <a href="reservation.html">Make a Reservation</a>
+                    <a href="reservation.php">Make a Reservation</a>
                   </div>
                 </div>
               </div>
@@ -187,7 +187,7 @@ require_once "includes/header.php";
                   </div>
                   <p>This free CSS template is provided by Template Mo website.</p>
                   <div class="main-button">
-                    <a href="reservation.html">Make a Reservation</a>
+                    <a href="reservation.php">Make a Reservation</a>
                   </div>
                 </div>
               </div>
