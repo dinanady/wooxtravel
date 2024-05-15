@@ -35,8 +35,7 @@ if(isset($_POST["submit"])){
       if(check_email($email)){
         if(!repeate_Email($email)){
         $person->createUser();
-        $_SESSION["user"]=$username;
-        $_SESSION["user_email"]=$email;
+       
        header("location: ../auth/login.php");
 
         }

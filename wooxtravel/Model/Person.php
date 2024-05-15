@@ -32,6 +32,18 @@ class Person {
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result; 
     }
+
+    public function Login($email,$password){
+        global $connection;
+        $sql = "SELECT * FROM users WHERE email=? and password =? ";
+        $stmt = $connection->prepare($sql);
+        $stmt->bindParam(1, $email);
+        $stmt->bindParam(2, $password);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result; 
+
+    }
     
     
 }
