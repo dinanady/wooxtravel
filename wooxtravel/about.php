@@ -1,5 +1,10 @@
 <?php
 require_once "includes/header.php";
+require_once __DIR__ . "/Model/country.php";
+$id = $_GET["id"];
+$country = new country("","","","","");
+$Country= $country->getcountryByID($id);
+ print_r($Country);
 ?>
   <!-- ***** Main Banner Area Start ***** -->
   <div class="about-main-content">
@@ -10,8 +15,8 @@ require_once "includes/header.php";
             <div class="blur-bg"></div>
             <h4>EXPLORE OUR COUNTRY</h4>
             <div class="line-dec"></div>
-            <h2>Welcome To Caribbean</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt uttersi labore et dolore magna aliqua is ipsum suspendisse ultrices gravida</p>
+            <h2>Welcome To <?php echo $Country['name']?></h2>
+            <p> <?php echo $Country['description']?></p>
             <div class="main-button">
             </div>
           </div>
@@ -27,7 +32,7 @@ require_once "includes/header.php";
         <div class="slider-content">
           <div class="row">
             <div class="col-lg-12">
-              <h2>Caribbean’s <em>Cities &amp; Towns</em></h2>
+              <h2><?php echo $Country['name']?>’s <em>Cities &amp; Towns</em></h2>
             </div>
             <div class="col-lg-12">
               <div class="owl-cites-town owl-carousel">

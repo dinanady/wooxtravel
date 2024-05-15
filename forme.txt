@@ -1,0 +1,44 @@
+select cout.name as name ,cout.image As image ,cout.population as population ,
+cout.territory As territory, 
+AVG(city.price) from countries cout JOIN 
+cites city on cout.id = city.cont_id;
+
+ echo '
+        <div class="col-lg-8">
+          <div class="items">
+            <div class="row">
+              
+             
+           echo ' <div class="col-lg-12">
+                <div class="item">
+                  <div class="row">
+                    <div class="col-lg-4 col-sm-5">
+                      <div class="image">
+                        <img src="assets/images/'.$country["image"].'" alt="">
+                      </div>
+                    </div>
+                    <div class="col-lg-8 col-sm-7">
+                      <div class="right-content">
+                        <h4>'.$country["name"].'</h4>
+                        <span>Europe</span>
+                        <div class="main-button">
+                          <a href="about.php">Explore More</a>
+                        </div>
+                        <p>'.$country["description"].'</p>
+                        <ul class="info">
+                          <li><i class="fa fa-user"></i>'.$country["population"].' Mil People</li>
+                          <li><i class="fa fa-globe"></i>'.$country["territory"] .'km2</li>
+                          <li><i class="fa fa-home"></i> $'.$country["AVG_Price"].'</li>
+                        </ul>
+                        <div class="text-button">
+                          <a href="about.php">Need Directions ? <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+               
+              
+        </div>';}?>
+        
