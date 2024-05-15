@@ -49,6 +49,17 @@ public function getcountryByID($id){
     return $result; 
 }
 
+public function getCitiesInCountry($id)
+{
+    global $connection;
+    $sql = "SELECT * FROM cites WHERE cont_id = :id";
+    $stm = $connection->prepare($sql);
+    $stm->bindParam(":id", $id);
+    $stm->execute();
+    $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
 
 
 

@@ -9,7 +9,7 @@ cites city on cout.id = city.cont_id;
             <div class="row">
               
              
-           echo ' <div class="col-lg-12">
+           echo' <div class="col-lg-12">
                 <div class="item">
                   <div class="row">
                     <div class="col-lg-4 col-sm-5">
@@ -41,4 +41,18 @@ cites city on cout.id = city.cont_id;
                
               
         </div>';}?>
-        
+        4
+
+
+
+
+        foreach ($cities as $city) {
+                  echo '<div class="item">
+                          <div class="thumb">
+                              <img src="assets/images/' . $city['image'] . '" alt="' . $city['name'] . '">
+                              <h4>' . $city['name'] . '</h4>
+                          </div>
+                        </div>
+                      ';
+                }
+                ?>

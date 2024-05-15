@@ -4,7 +4,10 @@ require_once __DIR__ . "/Model/country.php";
 $id = $_GET["id"];
 $country = new country("","","","","");
 $Country= $country->getcountryByID($id);
- print_r($Country);
+
+$cities = $country->getCitiesInCountry($id);
+
+
 ?>
   <!-- ***** Main Banner Area Start ***** -->
   <div class="about-main-content">
@@ -36,54 +39,18 @@ $Country= $country->getcountryByID($id);
             </div>
             <div class="col-lg-12">
               <div class="owl-cites-town owl-carousel">
-                <div class="item">
-                  <div class="thumb">
-                    <img src="assets/images/cities-01.jpg" alt="">
-                    <h4>Havana</h4>
-                  </div>
+                
+           <?php foreach ($cities as $city) : ?>
+            <div class="item">
+                <div class="thumb">
+                    <img src="assets/images/<?php echo $city['image']; ?>" alt="">
+                    <h4><?php echo $city['name']; ?></h4>
                 </div>
-                <div class="item">
-                  <div class="thumb">
-                    <img src="assets/images/cities-02.jpg" alt="">
-                    <h4>Kingston</h4>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="thumb">
-                    <img src="assets/images/cities-03.jpg" alt="">
-                    <h4>George Town</h4>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="thumb">
-                    <img src="assets/images/cities-04.jpg" alt="">
-                    <h4>Santo Domingo</h4>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="thumb">
-                    <img src="assets/images/cities-01.jpg" alt="">
-                    <h4>Havana</h4>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="thumb">
-                    <img src="assets/images/cities-02.jpg" alt="">
-                    <h4>Kingston</h4>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="thumb">
-                    <img src="assets/images/cities-03.jpg" alt="">
-                    <h4>George Town</h4>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="thumb">
-                    <img src="assets/images/cities-04.jpg" alt="">
-                    <h4>Santo Domingo</h4>
-                  </div>
-                </div>
+            </div>
+        <?php endforeach; ?>
+        
+                
+                
               </div>
             </div>
           </div>
