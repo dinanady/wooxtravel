@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ .  ("../config/config.php");
-   class country{
+require_once __DIR__ .  ("/../config/config.php");
+   class city{
     public $name;
     public $description;
     public $image;
@@ -28,15 +28,14 @@ public function addcountry(){
     $stmt->bindParam(6,$this->cont_id);
     $stmt->execute();
 }
-public function getCountries(){
+public function getAllCities(){
     global $connection;
-    $sql= "SELECT cout.name as name ,cout.image As image ,cout.population as population ,
-    cout.territory As territory, 
-    AVG(city.price) from countries cout JOIN 
-    cites city on cout.id = city.cont_id";
-    $stmt->prepare($sql);
+    $sql= "SELECT country.name as nameofcountry, city.name as nameofcity , country.id as Count_id ,city.id as city_id  
+    FROM countries country JOIN cites city
+    on country.id=city.cont_id";
+    $stmt=$connection->prepare($sql);
     $stmt->execute();
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $result = $stmt->fetchALL(PDO::FETCH_ASSOC);
     return  $result;
 
 }

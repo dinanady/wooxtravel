@@ -52,12 +52,39 @@ public function getcountryByID($id){
 public function getCitiesInCountry($id)
 {
     global $connection;
-    $sql = "SELECT * FROM cites WHERE cont_id = :id";
+    $sql = "SELECT city.id AS id, city.image AS image, city.price AS price, city.name AS name, COUNT(book.city_id) AS num_check, city.trip_days AS trip_days
+    FROM cites city
+    LEFT JOIN booking book ON city.id = book.city_id
+    WHERE city.cont_id = :id
+    GROUP BY city.id;";
     $stm = $connection->prepare($sql);
     $stm->bindParam(":id", $id);
     $stm->execute();
     $result = $stm->fetchAll(PDO::FETCH_ASSOC);
     return $result;
+}
+ 
+public function getnumofCitiesInCountry($id)
+{
+    global $connection;
+    $sql = "SELECT  count(id) as numOfCity from cites Where cont_id =:id";
+    $stm = $connection->prepare($sql);
+    $stm->bindParam(":id", $id);
+    $stm->execute();
+    $result = $stm->fetch(PDO::FETCH_ASSOC);
+    return $result['numOfCity'];
+}
+
+public function getnumofAllcheckin($id)
+{
+    global $connection;
+    $sql = "SELECT  count(book.city_id) as checkin from cites city join booking book on 
+    city.id = book.city_id  Where city.cont_id =:id";
+    $stm = $connection->prepare($sql);
+    $stm->bindParam(":id", $id);
+    $stm->execute();
+    $result = $stm->fetch(PDO::FETCH_ASSOC);
+    return $result['checkin'];
 }
 
 

@@ -1,5 +1,9 @@
 <?php
 require_once "includes/header.php";
+require_once __DIR__ . "/Model/city.php";
+$cities = new city("","","","","","");
+$allcities  = $cities->getAllCities();
+
 ?>
 
   <div class="second-page-heading">
@@ -9,7 +13,7 @@ require_once "includes/header.php";
           <h4>Book Prefered Deal Here</h4>
           <h2>Make Your Reservation</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt uttersi labore et dolore magna aliqua is ipsum suspendisse ultrices gravida</p>
-          <div class="main-button"><a href="about.html">Discover More</a></div>
+          <div class="main-button"><a href="home.php">Discover More</a></div>
         </div>
       </div>
     </div>
@@ -48,7 +52,7 @@ require_once "includes/header.php";
       <div class="row">
        
         <div class="col-lg-12">
-          <form id="reservation-form" name="gs" method="submit" role="search" action="#">
+          <form id="reservation-form" name="gs" method="POST" role="search" action="../Controllers/reservation.php">
             <div class="row">
               <div class="col-lg-12">
                 <h4>Make Your <em>Reservation</em> Through This <em>Form</em></h4>
@@ -56,13 +60,13 @@ require_once "includes/header.php";
               <div class="col-lg-6">
                   <fieldset>
                       <label for="Name" class="form-label">Your Name</label>
-                      <input type="text" name="Name" class="Name" placeholder="Ex. John Smithee" autocomplete="on" required>
+                      <input type="text" name="username" class="Name" placeholder="Ex. John Smithee" autocomplete="on" required>
                   </fieldset>
               </div>
               <div class="col-lg-6">
                 <fieldset>
                     <label for="Number" class="form-label">Your Phone Number</label>
-                    <input type="text" name="Number" class="Number" placeholder="Ex. +xxx xxx xxx" autocomplete="on" required>
+                    <input type="text" name="phone" class="Number" placeholder="Ex. +xxx xxx xxx" autocomplete="on" required>
                 </fieldset>
               </div>
               <div class="col-lg-6">
@@ -88,10 +92,11 @@ require_once "includes/header.php";
                       <label for="chooseDestination" class="form-label">Choose Your Destination</label>
                       <select name="Destination" class="form-select" aria-label="Default select example" id="chooseCategory" onChange="this.form.click()">
                           <option selected>ex. Switzerland, Lausanne</option>
-                          <option value="Italy, Roma">Italy, Roma</option>
-                          <option value="France, Paris">France, Paris</option>
-                          <option value="Engaland, London">Engaland, London</option>
-                          <option value="Switzerland, Lausanne">Switzerland, Lausanne</option>
+                          <?php foreach($allcities as $city ):?>
+
+                          <option value="<?php echo $city['city_id'] ?>"><?php echo $city['nameofcountry'].",".$city['nameofcity'] ?></option>
+                          <?php endforeach ;?>
+
                       </select>
                   </fieldset>
               </div>

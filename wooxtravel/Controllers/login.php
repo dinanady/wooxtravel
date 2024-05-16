@@ -1,7 +1,7 @@
 <?php
 require_once "../config/session_config.php";
-require_once "../config/config.php";
-require_once "../Model/Person.php";
+
+require_once __DIR__ .("/../Model/Person.php");
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
 $email = $_POST['email'];

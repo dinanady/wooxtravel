@@ -37,7 +37,7 @@ define("AppUrl","http://localhost/travel/wooxtravel/wooxtravel");
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
                             <li><a href="<?php echo AppUrl;?>/index.php" class="active">Home</a></li>
-                            <li><a href="<?php echo AppUrl;?>/about.php">About</a></li>
+                            <!-- <li><a href="<?php echo AppUrl;?>/about.php">About</a></li> -->
                             <li><a href="<?php echo AppUrl;?>/deals.php">Deals</a></li>
                             <?php
                             // Check if the user session is set

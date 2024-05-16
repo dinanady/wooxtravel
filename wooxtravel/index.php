@@ -22,7 +22,7 @@
 
             echo '<h2>Take a Glimpse Into The Beautiful Country Of:</h2>';
              echo ' <h1>'.$country['name'].'</h1>';
-             echo '<div class="border-button"><a href="about.php">Go There</a></div>';
+             echo '<div class="border-button"><a href="about.php?id='.$country['id'].'">Go There</a></div>';
               echo  '</div>';
               echo '<div class="container">';
               echo '<div class="row">';
