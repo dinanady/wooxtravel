@@ -3,6 +3,9 @@ require_once "includes/header.php";
 require_once __DIR__ . "/Model/city.php";
 $cities = new city("","","","","","");
 $allcities  = $cities->getAllCities();
+$id = $_GET['id'];
+$onlycity = $cities->getcity($id);
+
 
 ?>
 
@@ -50,23 +53,28 @@ $allcities  = $cities->getAllCities();
   <div class="reservation-form">
     <div class="container">
       <div class="row">
-       
+      
         <div class="col-lg-12">
-          <form id="reservation-form" name="gs" method="POST" role="search" action="../Controllers/reservation.php">
+          <form id="reservation-form" name="gs" method="POST" role="search" action="Controllers/reservation.php">
             <div class="row">
               <div class="col-lg-12">
                 <h4>Make Your <em>Reservation</em> Through This <em>Form</em></h4>
               </div>
+              <!-- error message from empty -->
+              <?php if(isset($_SESSION['empty_reservation'])): ?>
+              <div class='alert alert-danger' role='alert' ><?php echo $_SESSION['empty_reservation'];?></div>
+              <?php endif; ?>
+              <?php   unset($_SESSION["empty_reservation"]);?>
               <div class="col-lg-6">
                   <fieldset>
                       <label for="Name" class="form-label">Your Name</label>
-                      <input type="text" name="username" class="Name" placeholder="Ex. John Smithee" autocomplete="on" required>
+                      <input type="text" name="username" class="Name" placeholder="Ex. John Smithee" autocomplete="on">
                   </fieldset>
               </div>
               <div class="col-lg-6">
                 <fieldset>
                     <label for="Number" class="form-label">Your Phone Number</label>
-                    <input type="text" name="phone" class="Number" placeholder="Ex. +xxx xxx xxx" autocomplete="on" required>
+                    <input type="text" name="phone" class="Number" placeholder="Ex. +xxx xxx xxx" autocomplete="on" >
                 </fieldset>
               </div>
               <div class="col-lg-6">
@@ -84,25 +92,29 @@ $allcities  = $cities->getAllCities();
               <div class="col-lg-6">
                 <fieldset>
                     <label for="Number" class="form-label">Check In Date</label>
-                    <input type="date" name="date" class="date" required>
+                    <input type="date" name="checkdate" class="date" >
                 </fieldset>
               </div>
               <div class="col-lg-12">
                   <fieldset>
                       <label for="chooseDestination" class="form-label">Choose Your Destination</label>
-                      <select name="Destination" class="form-select" aria-label="Default select example" id="chooseCategory" onChange="this.form.click()">
-                          <option selected>ex. Switzerland, Lausanne</option>
+                      <select name="destination" class="form-select" aria-label="Default select example" id="chooseCategory" onChange="this.form.click()">
+                        <?php if(isset($_GET['id'])) :?>
+                          <option value ="<?php echo $_GET['id']?>"><?php echo $onlycity['name'] ?></option>
+                          <?php endif ;?>
+                          <?php if(empty($_GET['id'])) :?>
                           <?php foreach($allcities as $city ):?>
-
+                             
+                            
                           <option value="<?php echo $city['city_id'] ?>"><?php echo $city['nameofcountry'].",".$city['nameofcity'] ?></option>
                           <?php endforeach ;?>
-
+                          <?php endif ;?>
                       </select>
                   </fieldset>
               </div>
               <div class="col-lg-12">                        
                   <fieldset>
-                      <button class="main-button">Make Your Reservation Now</button>
+                      <button class="main-button" type="submit">Make Your Reservation Now</button>
                   </fieldset>
               </div>
             </div>
