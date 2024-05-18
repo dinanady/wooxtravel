@@ -40,6 +40,16 @@ public function getAllCities(){
 
 }
 
+public function getcity($id){
+    global $connection;
+    $sql="SELECT * FROM cites WHERE id = :id";
+    $stmt = $connection->prepare($sql);
+    $stmt->bindParam("id",$id);
+    $stmt->execute();
+    $result= $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result;
+}
+
 
 
 }
