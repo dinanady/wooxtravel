@@ -15,6 +15,7 @@ try{
     if($data){
         $_SESSION["error_login"]="";
         $_SESSION["Email"]=$email;
+        $_SESSION["id"]=$data['id'];
         header("location: ../index.php ");
         exit;
 
