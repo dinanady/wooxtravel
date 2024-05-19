@@ -88,6 +88,15 @@ public function getnumofAllcheckin($id)
 }
 
 
-
+public function search($id, $price){
+    global $connection;
+    $sql = "SELECT * from cites WHERE cont_id= :id and price >=:price";
+    $stm = $connection->prepare($sql);
+    $stm->bindParam(":id",$id);
+    $stm->bindParam(":price",$price);
+    $stm->execute();
+    $result = $stm->fetchALL(PDO::FETCH_ASSOC);
+    return $result;
+}
 
 }

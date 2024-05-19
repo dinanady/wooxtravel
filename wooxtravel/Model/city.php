@@ -49,6 +49,17 @@ public function getcity($id){
     $result= $stmt->fetch(PDO::FETCH_ASSOC);
     return $result;
 }
+ 
+public function getbestprice(){
+    global $connection;
+    $sql="SELECT * from cites 
+    order by price ASC
+    LIMIT 4";
+    $stmt = $connection->prepare($sql);
+    $stmt->execute();
+    $result= $stmt->fetchALL(PDO::FETCH_ASSOC);
+    return $result;
+}
 
 
 
