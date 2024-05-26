@@ -42,6 +42,63 @@ public function createreservation() {
   $stmt->execute();
 }
 
+public function getbookings($id){
+  global $connection;
+  $sql = "SELECT * FROM booking WHERE user_id =:id";
+  $stmt = $connection->prepare($sql);
+  $stmt->bindParam(":id", $id);
+  $stmt->execute();
+  $result=$stmt->fetchALL(PDO::FETCH_ASSOC);
+  return $result;
+}
+ 
+public function cancleBooking($booking_id,$user_id){
+  global $connection;
+  $sql = "DELETE FROM booking WHERE id = ? AND user_id = ?";
+  $stmt = $connection->prepare($sql);
+  $stmt->bindParam(1,$booking_id);
+  $stmt->bindParam(2,$user_id);
+  $result = $stmt->execute();
+        return $result;
+  
+}
+public function getonlybooking($id){
+  global $connection;
+  $sql= "SELECT * FROM booking WHERE id = :id";
+  $stmt = $connection->prepare($sql);
+  $stmt->bindParam(":id", $id);
+  $stmt->execute();
+  $result=$stmt->fetch(PDO::FETCH_ASSOC);
+  return $result;
+}
+public function updateBookingStatus($id, $status) {
+  global $connection;
+  $sql = "UPDATE booking SET status = :status WHERE id = :id";
+  $stmt =  $connection->prepare($sql);
+  $stmt->bindParam(':status', $status);
+  $stmt->bindParam(':id', $id);
+
+  return $stmt->execute();
+}
+public function getAllbooking(){
+  global $connection;
+  $sql= "SELECT * FROM booking ";
+  $stmt = $connection->prepare($sql);
+  
+  $stmt->execute();
+  $result=$stmt->fetchALL(PDO::FETCH_ASSOC);
+  return $result;
+}
+
+public function numderOfbooking(){
+  global $connection;
+  $sql= "SELECT count(id) as number_Of_bookings FROM booking ";
+  $stmt = $connection->prepare($sql);
+  $stmt->execute();
+  $result=$stmt->fetch(PDO::FETCH_ASSOC);
+  return $result['number_Of_bookings'];
+  
+}
 
 }
 

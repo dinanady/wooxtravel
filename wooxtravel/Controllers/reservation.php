@@ -21,16 +21,17 @@ if($_SERVER['REQUEST_METHOD']==="POST"){
     }
 
     else{
-        if(date("Y-M-D") < $date  ){
+        if(date("Y-m-d") < $date  ){
     $city = new city("","","","","","");
     $destination = $city->getcity($city_id);
     $payment =  $Guests *  $destination['price'];
+    $_SESSION['payment'] =$payment;
     $user_id = $_SESSION["id"];
     $reservation = new bookings($username, $phone,$Guests,$date ,$destination['name'],$user_id,"pending",$city_id,$payment);
     $reservation->createreservation();
 
     
-    header("location: ../index.php");
+    header("location: ../mybooking.php");
     exit;
         }
         else {

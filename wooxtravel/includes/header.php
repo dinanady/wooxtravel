@@ -39,27 +39,28 @@ define("AppUrl","http://localhost/travel/wooxtravel/wooxtravel");
                             <li><a href="<?php echo AppUrl;?>/index.php" class="active">Home</a></li>
                             <!-- <li><a href="<?php echo AppUrl;?>/about.php">About</a></li> -->
                             <li><a href="<?php echo AppUrl;?>/deals.php">Deals</a></li>
-                            <?php
-                            // Check if the user session is set
-                            if(isset($_SESSION["Email"])) {
-                                // User is logged in, show dropdown with email and logout button
-                                echo '<li class="nav-item dropdown">';
-                                echo '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">';
-                                echo $_SESSION["Email"];
-                                echo '</a>';
-                                echo '<ul class="dropdown-menu" aria-labelledby="navbarDropdown">';
-                                echo '<li><a class="dropdown-item text-dark" href="#">Action</a></li>';
-                                echo '<li><a class="dropdown-item text-dark" href="#">Another action</a></li>';
-                                echo '<li><hr class="dropdown-divider"></li>';
-                                echo '<li><a class="dropdown-item text-dark" href="'. AppUrl .'/Controllers/logout.php">Logout</a></li>';
-                                echo '</ul>';
-                                echo '</li>';
-                            } else {
-                                // User is not logged in, show login and register buttons
-                                echo '<li><a href="' . AppUrl . '/auth/login.php">Login</a></li>';
-                                echo '<li><a href="' . AppUrl . '/auth/register.php">Register</a></li>';
-                            }
-                            ?>
+                           
+                    <?php if (isset($_SESSION["Email"])) : ?> 
+                   <!-- User is logged in, show dropdown with email and logout button -->
+                    <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <?php echo $_SESSION["Email"]; ?>
+                           </a>
+                          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                           <li><a class="dropdown-item text-dark" href="<?php echo AppUrl; ?>/mybooking.php">My Reservation</a></li>
+                         <?php if ( $_SESSION["role"]==="admin"):?>
+                        <li><a class="dropdown-item text-dark" href="<?php echo AppUrl; ?>/admin-panel/index.php">dashbord</a></li>
+                      <?php endif; ?>
+                     <li><hr class="dropdown-divider"></li>
+                       <li><a class="dropdown-item text-dark" href="<?php echo AppUrl; ?>/Controllers/logout.php">Logout</a></li>
+        </ul>
+    </li>
+    <?php else: ?> 
+    <!-- User is not logged in, show login and register buttons -->
+    <li><a href="<?php echo AppUrl; ?>/auth/login.php">Login</a></li>
+    <li><a href="<?php echo AppUrl; ?>/auth/register.php">Register</a></li>
+    <?php endif; ?>
+
                         </ul>   
                         <a class="menu-trigger">
                             <span>Menu</span>

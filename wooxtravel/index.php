@@ -2,7 +2,7 @@
  require_once __DIR__ .  "/includes/header.php";
  require_once __DIR__ . "/Model/country.php";
  
- $country = new country("","","","","");
+ $country = new country("","","","","","");
  $countries = $country->getCountries();
  
 ?>
@@ -43,7 +43,7 @@
                       </div>
                         <div class="col-lg-3 col-sm-6 col-6">
                         <div class="main-button">
-                          <a href="about.html">Explore More</a>
+                          <a href="about.php?id='.$country['id'].'">Explore More</a>
                         </div>
                       </div>
                     </div>

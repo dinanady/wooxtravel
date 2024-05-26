@@ -2,7 +2,7 @@
 require_once "../includes/header.php";
 
 require_once "../config/session_config.php";
-if(isset( $_SESSION["Email"])){
+if(isset( $_SESSION["Email"]) && $_SESSION["role"]!="admin"){
   header("location: ../index.php ");
 }
 

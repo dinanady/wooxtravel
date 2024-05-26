@@ -5,7 +5,7 @@ function search(){
 if(isset($_POST['search'])){
 $id = $_POST['Location'];
 $price = $_POST['price'];
-$countries= new country("","","","","");
+$countries= new country("","","","","","");
 $allcites=$countries->search($id, $price);
 return $allcites;
 header("location:../deals.php");

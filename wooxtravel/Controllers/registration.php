@@ -10,8 +10,9 @@ if(isset($_POST["submit"])){
   $email =$_POST['email'];
   $password =$_POST["password"];
   $hahpasswd =sha1($password);
- if(empty($username)||empty($email)||empty($password)){
-    
+  $role = $_POST["role"];
+ if(empty($username)||empty($email)||empty($password)||empty($role)){
+  
  if(empty($username)){
   $error["Empty_user"] = " Name is required";
  }
@@ -24,14 +25,23 @@ if(isset($_POST["submit"])){
     $error["Password_empty"] ="Password is required";
 
  } 
- header("location: ../auth/register.php");
- 
+
+ if(empty($role)){
+    $error["role_empty"] ="Role is required";
+
+ }
+ if($_SESSION['role']!="admin") {
+ header("location: ../auth/register.php");}
+ else {
+    header("location: ../admin-panel/users/create-user.php");
+
+ }
    }
    
    else{
 
     try{
-      $person=new Person($username,$email,$hahpasswd);
+      $person=new Person($username,$email,$hahpasswd,"");
       if(check_email($email)){
         if(!repeate_Email($email)){
         $person->createUser();
@@ -70,7 +80,7 @@ function check_email($email){
 
 
  function repeate_Email($email){
- $person =new Person("",$email,"");
+ $person =new Person("",$email,"","");
  if($person->getuserByEmail($email)){
  return true ;
  }

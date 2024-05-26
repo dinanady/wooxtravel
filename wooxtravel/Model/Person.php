@@ -5,17 +5,18 @@ class Person {
     public $username;
     public $email;
     public $password;
+    public $role= 'user';
 
-    public function __construct($username,$email,$password){
+    public function __construct($username,$email,$password,$role){
         
         $this->username=$username;
         $this->email=$email;
         $this->password=$password;
-       
+        $this->role=$role;
     }
     public function createUser(){
         global $connection;
-        $sql = "INSERT INTO users(name, email, password) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO users(name, email, password,role) VALUES (?, ?, ?,'user')";
         $stm = $connection->prepare($sql);
         $stm->bindParam(1, $this->username);
         $stm->bindParam(2, $this->email);
@@ -44,7 +45,35 @@ class Person {
         return $result; 
 
     }
+    public function getAllUsers(){
+        global $connection;
+        $sql = "SELECT * FROM users ";
+        $stmt = $connection->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchALL(PDO::FETCH_ASSOC);
+        return $result; 
+    }
+  
+    public function deleteUser($user_id){
+        global $connection;
+        $sql = "DELETE FROM users WHERE id = :id ";
+        $stmt = $connection->prepare($sql);
+        $stmt->bindParam(":id",$user_id);
+       
+        $result = $stmt->execute();
+              return $result;
     
+    }
+
+    public function numderOfUsers(){
+        global $connection;
+        $sql= "SELECT count(id) as number_Of_users FROM users";
+        $stmt = $connection->prepare($sql);
+        $stmt->execute();
+        $result=$stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['number_Of_users'];
+        
+      }
     
 }
 

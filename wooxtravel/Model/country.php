@@ -6,25 +6,30 @@ require_once __DIR__ .  ("../../config/config.php");
     public $image;
     public $population;
     public $territory;
+    public $continent;
     
 
-public function __construct($name,$description,$image,$population,$territory){
+public function __construct($name,$description,$image,$population,$territory,$continent){
 $this->name =$name;
 $this->description =$description;
 $this->image =$image;
 $this->population =$population;
 $this->territory =$territory;
+$this->continent =$continent;
 }
 
 public function addcountry(){
     global $connection;
-    $sql="INSERT INTO counties(name,description,population,territory,image) VALUES(?,?,?,?,?)";
+    $sql="INSERT INTO countries(name,description,image,population,territory,continent) VALUES(?,?,?,?,?,?)";
     $stmt =$connection->prepare($sql);
     $stmt->bindParam(1,$this->name);
     $stmt->bindParam(2,$this->description);
-    $stmt->bindParam(3,$this->population);
-    $stmt->bindParam(4,$this->territory);
-    $stmt->bindParam(5,$this->image);
+    $stmt->bindParam(3,$this->image);
+    $stmt->bindParam(4,$this->population);
+    $stmt->bindParam(5,$this->territory);
+    $stmt->bindParam(6,$this->continent);
+   
+   
     $stmt->execute();
 }
 public function getCountries(){
@@ -38,7 +43,14 @@ public function getCountries(){
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return  $result;
 }
-
+ public function allcountries(){
+    global $connection;
+    $sql = "SELECT * FROM countries";
+    $stmt = $connection->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return  $result;
+ }
 public function getcountryByID($id){
     global $connection;
     $sql = "SELECT * FROM countries WHERE id =:id";
@@ -49,6 +61,26 @@ public function getcountryByID($id){
     return $result; 
 }
 
+
+public function deleteCountry($country_id){
+    global $connection;
+    $sql = "DELETE FROM countries WHERE id = :id ";
+    $stmt = $connection->prepare($sql);
+    $stmt->bindParam(":id",$country_id);
+   
+    $result = $stmt->execute();
+          return $result;
+
+}
+public function getcountryByName($name){
+    global $connection;
+    $sql = "SELECT * FROM countries WHERE name =:name";
+    $stmt=$connection->prepare($sql);
+    $stmt->bindParam(":name",$name);
+    $stmt->execute();
+    $result =$stmt->fetch(PDO::FETCH_ASSOC);
+    return $result; 
+}
 public function getCitiesInCountry($id)
 {
     global $connection;
@@ -90,7 +122,7 @@ public function getnumofAllcheckin($id)
 
 public function search($id, $price){
     global $connection;
-    $sql = "SELECT * from cites WHERE cont_id= :id and price >=:price";
+    $sql = "SELECT * from cites WHERE cont_id= :id and price <=:price";
     $stm = $connection->prepare($sql);
     $stm->bindParam(":id",$id);
     $stm->bindParam(":price",$price);
@@ -98,5 +130,28 @@ public function search($id, $price){
     $result = $stm->fetchALL(PDO::FETCH_ASSOC);
     return $result;
 }
+public function updateCountry($id) {
+    global $connection;
+    $sql = "UPDATE countries SET name = ?, description = ?, image = ?,population = ?, territory = ?, continent = ? WHERE id = ?";
+    $stmt = $connection->prepare($sql);
+    $stmt->bindParam(1, $this->name);
+    $stmt->bindParam(2, $this->description);
+    $stmt->bindParam(3, $this->image);
+    $stmt->bindParam(4, $this->population);
+    $stmt->bindParam(5, $this->continent);
+    $stmt->bindParam(6, $this->country_id);
+    $stmt->bindParam(7, $id);
+    $stmt->execute();
+}
+
+public function numderOfCountries(){
+    global $connection;
+    $sql= "SELECT count(id) as number_Of_Countries FROM countries";
+    $stmt = $connection->prepare($sql);
+    $stmt->execute();
+    $result=$stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['number_Of_Countries'];
+    
+  }
 
 }
