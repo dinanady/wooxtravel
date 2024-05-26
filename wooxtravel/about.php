@@ -3,7 +3,7 @@ require_once "includes/header.php";
 require_once __DIR__ . "/Model/country.php";
 if(isset($_GET["id"])){
 $id = $_GET["id"];
-$country = new country("","","","","");
+$country = new country("","","","","","");
 $Country= $country->getcountryByID($id);
 
 $cities = $country->getCitiesInCountry($id);
