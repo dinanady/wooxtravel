@@ -5,11 +5,11 @@ require_once __DIR__ . "/../../Model/Person.php";
 $error = [];
 
 if (isset($_POST["submit"])) {
-    $id = $_GET["id"];
     $username = $_POST["username"];
     $email = $_POST["email"];
     $password = $_POST["password"];
     $role = $_POST["role"];
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
     // Validation
     if (empty($username)) {
@@ -18,33 +18,26 @@ if (isset($_POST["submit"])) {
     if (empty($email)) {
         $error["Email_empty"] = "Email is required";
     }
+    if (empty($password)) {
+        $error["Password_empty"] = "Password is required";
+    }
     if (empty($role)) {
         $error["role_empty"] = "Role is required";
     }
 
-    // Check for valid email format
-    if (!empty($email) && !check_email($email)) {
-        $error["Email_invalid"] = "Email is invalid";
-    }
-
-    // Only hash the password if it's not empty
-    $hashedPassword = !empty($password) ? sha1($password) : null;
-
     if (empty($error)) {
         try {
-            $person = new Person($username, $email, $password, $role);
-            
-            // Fetch current user's email
-            $currentUser = $person->getUserById($id);
-            
-            // Check if the email is already taken by another user
-            if ($email != $currentUser['email'] && repeate_Email($email)) {
-                $error["Email_taken"] = "Email is already taken";
+            $person = new Person($username, $email, $hashedPassword, $role);
+            if (check_email($email)) {
+                if (!repeate_Email($email)) {
+                    $person->createUser();
+                    header("location: ../users/users.php");
+                    exit();
+                } else {
+                    $error["Email_taken"] = "Email is already taken";
+                }
             } else {
-                // Update the user
-                $person->updateUser($id, $username, $email, $hashedPassword, $role);
-                header("location: ../users/users.php");
-                exit();
+                $error["Email_invalid"] = "Email is invalid";
             }
         } catch (Exception $e) {
             echo $e->getMessage();
@@ -52,7 +45,7 @@ if (isset($_POST["submit"])) {
     }
 
     $_SESSION["errors"] = $error;
-    header("location: ../users/edit-user.php?id=$id");
+    header("location: ../users/create-users.php");
     exit();
 }
 

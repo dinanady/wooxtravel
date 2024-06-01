@@ -10,8 +10,8 @@ if(isset($_POST["submit"])){
   $email =$_POST['email'];
   $password =$_POST["password"];
   $hahpasswd =sha1($password);
-  $role = $_POST["role"];
- if(empty($username)||empty($email)||empty($password)||empty($role)){
+ 
+ if(empty($username)||empty($email)||empty($password)){
   
  if(empty($username)){
   $error["Empty_user"] = " Name is required";
@@ -30,12 +30,8 @@ if(isset($_POST["submit"])){
     $error["role_empty"] ="Role is required";
 
  }
- if($_SESSION['role']!="admin") {
- header("location: ../auth/register.php");}
- else {
-    header("location: ../admin-panel/users/create-user.php");
-
- }
+ header("location: ../auth/register.php");
+ 
    }
    
    else{

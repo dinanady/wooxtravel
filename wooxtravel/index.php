@@ -4,7 +4,7 @@
  
  $country = new country("","","","","","");
  $countries = $country->getCountries();
- 
+ $count=1;
 ?>
   <!-- ***** Main Banner Area Start ***** -->
   <section id="section-1">
@@ -14,36 +14,37 @@
       <input type="radio" id="banner3" class="sec-1-input" name="banner">
       <input type="radio" id="banner4" class="sec-1-input" name="banner">
       <div class="slider">
-        <?php
-        foreach($countries as $country){
-        echo '<div id="top-banner-'.$country['id'].'" class="banner">';
-          echo '<div class="banner-inner-wrapper header-text">';
-            echo '<div class="main-caption">';
+        
+      <?php foreach($countries as $country):?>
+        <div id="top-banner-<?php echo $count ;?>" class="banner">
+          <div class="banner-inner-wrapper header-text">
+            <div class="main-caption">
 
-            echo '<h2>Take a Glimpse Into The Beautiful Country Of:</h2>';
-             echo ' <h1>'.$country['name'].'</h1>';
-             echo '<div class="border-button"><a href="about.php?id='.$country['id'].'">Go There</a></div>';
-              echo  '</div>';
-              echo '<div class="container">';
-              echo '<div class="row">';
-              echo   '<div class="col-lg-12">';
-              echo   '<div class="more-info">';
-              echo '<div class="row">';
-              echo   ' <div class="col-lg-3 col-sm-6 col-6">';
-              echo' <i class="fa fa-user"></i>';
-              echo   '  <h4><span>Population:</span><br>'.$country['population'].' M</h4>';
-              echo '</div>';
-              echo  ' <div class="col-lg-3 col-sm-6 col-6">
+            <h2>Take a Glimpse Into The Beautiful Country Of:</h2>
+             <h1><?php echo $country['name'] ;?></h1>
+             <div class="border-button"><a href="about.php?id=<?php echo $country['id'] ;?>">Go There</a></div>
+              </div>
+              <div class="container">
+              <div class="row">
+              <div class="col-lg-12">
+              <div class="more-info">
+              <div class="row">
+             <div class="col-lg-3 col-sm-6 col-6">
+              <i class="fa fa-user"></i>
+              <h4><span>Population:</span><br> <?php echo $country['population'] ;?> M</h4>';
+              </div>
+              <div class="col-lg-3 col-sm-6 col-6">
                         <i class="fa fa-globe"></i>
-                        <h4><span>Territory:</span><br>'.$country['territory'].' KM<em>2</em></h4>
+                        <h4><span>Territory:</span><br><?php echo $country['territory'] ;?>KM<em>2</em></h4>
                       </div>
                       <div class="col-lg-3 col-sm-6 col-6">
                         <i class="fa fa-home"></i>
-                        <h4><span>AVG Price:</span><br>'.$country['AVG_Price'].'</h4>
+                        <h4><span>AVG Price:</span><br> <?php echo $country['AVG_Price'] ;?></h4>
                       </div>
                         <div class="col-lg-3 col-sm-6 col-6">
                         <div class="main-button">
-                          <a href="about.php?id='.$country['id'].'">Explore More</a>
+                          <a href="about.php?id=<?php echo $country['id'] ;?>">Explore More</a>
+                          <?php $count ++?>
                         </div>
                       </div>
                     </div>
@@ -52,8 +53,9 @@
               </div>
             </div>
           </div>
-        </div>';
-        }?>
+        </div>
+       
+        <?php  endforeach;?>
       </div>
       <nav>
         <div class="controls">

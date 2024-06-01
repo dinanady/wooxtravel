@@ -132,17 +132,18 @@ public function search($id, $price){
 }
 public function updateCountry($id) {
     global $connection;
-    $sql = "UPDATE countries SET name = ?, description = ?, image = ?,population = ?, territory = ?, continent = ? WHERE id = ?";
+    $sql = "UPDATE countries SET name = ?, description = ?, image = ?, population = ?, territory = ?, continent = ? WHERE id = ?";
     $stmt = $connection->prepare($sql);
     $stmt->bindParam(1, $this->name);
     $stmt->bindParam(2, $this->description);
     $stmt->bindParam(3, $this->image);
     $stmt->bindParam(4, $this->population);
-    $stmt->bindParam(5, $this->continent);
-    $stmt->bindParam(6, $this->country_id);
+    $stmt->bindParam(5, $this->territory);
+    $stmt->bindParam(6, $this->continent);
     $stmt->bindParam(7, $id);
     $stmt->execute();
 }
+
 
 public function numderOfCountries(){
     global $connection;

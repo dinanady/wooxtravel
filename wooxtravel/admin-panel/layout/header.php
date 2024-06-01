@@ -13,7 +13,7 @@ define("AppUrl","http://localhost/travel/wooxtravel/wooxtravel");
     <title>Admin Panel</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-     <link href="../styles/style.css" rel="stylesheet">
+     <link href="<?php echo AppUrl; ?>/admin-panel/styles/style.css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
@@ -21,7 +21,8 @@ define("AppUrl","http://localhost/travel/wooxtravel/wooxtravel");
 <div id="wrapper">
     <nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
       <div class="container">
-      <a class="navbar-brand" href="#">LOGO</a>
+
+      <a class="navbar-brand" href="../../index.php"><img src="<?php echo AppUrl; ?>/assets/images/logo.png"  width= "70"alt=""></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -30,7 +31,7 @@ define("AppUrl","http://localhost/travel/wooxtravel/wooxtravel");
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav side-nav" >
           <li class="nav-item">
-            <a class="nav-link" style="margin-left: 20px;" href="../index.php">Home
+            <a class="nav-link" style="margin-left: 20px;" href="<?php echo AppUrl; ?>/admin-panel/index.php">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>

@@ -1,8 +1,8 @@
 <?php
-require_once "includes/header.php";
+ require_once "includes/header.php";
 require_once __DIR__ . "/Model/bookings.php";
 require_once __DIR__ . "/Model/payment.php";
-session_start(); // Make sure session is started
+
 if (!isset($_SESSION['id'])) {
     // Redirect to login page if user is not logged in
     header("Location: http://localhost/travel/wooxtravel/wooxtravel/auth/login.php");
@@ -14,88 +14,88 @@ $user_id = $_SESSION['id'];
 $bookings = new bookings("", "", "", "", "", "", "", "", ""); 
 $ALLbookings = $bookings->getbookings($user_id);
 $payments = new payments(); 
-
+$count = 1;
 ?>
 
-<div class="container mt-5">
-    <table class="table">
-        <thead class="table-dark">
+<div class="container-fluid my-5 " style="height:70vh;">
+<div class="row">
+        <div class="col">
+          <div class="card mt-5">
+            <div class="card-body">
+            <?php if (!empty($ALLbookings)) : ?>
+              <h5 class="card-title mb-4 d-inline">Bookings</h5>
+           
+           <table class="table text-center  table-striped">
+           <thead >
             <tr>
-                <th>Destination</th>
-                <th>Number Of Guests</th>
-                <th>Date</th>
-                <th>Price</th>
-                <th>Status</th>
-                <th>Action</th>
+                <th scope="col">#</th>
+                <th scope="col">name</th>
+                <th scope="col">phone_number</th>
+                <th  scope="col">Destination</th>
+                <th  scope="col">Number Of Guests</th>
+                <th scope="col">checkin_date</th>
+                <th  scope="col">Price</th>
+                <th scope="col">status</th>
+                <th scope="col">Actions</th>
+               
+               
+                
             </tr>
         </thead>
         <tbody>
-            <?php if (!empty($ALLbookings)) : ?>
+            
                 <?php foreach ($ALLbookings as $booking) : ?>
                     <tr>
+                        <th scope="row"><?php echo $count;?></th>
+                        <td><?php echo $booking['username'];?></td>
+                        <td><?php echo $booking['phone_num'];?></td>
                         <td><?php echo $booking['destination']; ?></td>
                         <td><?php echo $booking['num_of_guests']; ?></td>
                         <td><?php echo $booking['checkIn']; ?></td>
-                        <td><?php echo $booking['payment']; ?></td>
-                        <td><?php echo $booking['status']; ?></td>
+                        <td>$<?php echo $booking['payment']; ?></td>
+                        <td>
+                        <?php if( $booking['status'] ==='pending'):?>
+                      <span class="badge bg-info text-light"><?php echo $booking['status'];?> </span>
+                       <?php elseif( $booking['status'] ==='paid'): ?>  
+                    <span class="badge bg-success text-light"><?php echo $booking['status'];?></span>
+                    <?php elseif( $booking['status'] ==='reject'): ?>
+                     <span class="badge bg-danger text-light"><?php echo $booking['status'];?></span>
+                      <?php elseif( $booking['status'] ==='accept'): ?>
+                        <span class="badge bg-Secondary text-light"><?php echo $booking['status'];?></span>
+                     <?php endif; ?>
+                        </td>
                         <td>
                             <?php if ($booking['status'] == "pending" || $booking['status'] == "reject") : ?>  
                                 <a href="Controllers/deletebooking.php?id=<?php echo $booking['id']; ?>" class="btn btn-danger">Cancel</a>
                                 
-                            <?php endif; ?> 
-                            <?php if ($booking['status'] == "accept") : ?>  
+                          
+                            <?php elseif ($booking['status'] == "accept") : ?>  
                                 <a class="btn btn-success" href="pay.php?id=<?php echo $booking['id']; ?>">Pay</a>
-                            <?php endif; ?> 
-                            <?php if ($booking['status'] == "paid") : ?>  
+                           
+                            <?php elseif ($booking['status'] == "paid") : ?>  
                               <?php  $details = $payments->getPaymentDetailsByBookingId($booking['id'])?>
-                                <p><?php  echo $details['payment_time']?> </p>
+                                <p><?php  echo "Payment Time :". $details['payment_time']?> </p>
                             <?php endif; ?> 
                         </td>
                     </tr>
                 <?php endforeach; ?>
             <?php else : ?>
-                <tr>
-                    <td colspan="6" class="text-center fw-bold">No bookings found.</td>
-                </tr>
+                
+                    <p  class="text-center fw-bold">No bookings found.</p>
+                
             <?php endif; ?>
         </tbody>
     </table>
 </div>
+            </div>
+            </div>
+            </div>
+            </div>
 
-<!-- Modal for displaying payment details -->
-<!-- <div class="modal fade" id="paymentDetailsModal" tabindex="-1" aria-labelledby="paymentDetailsModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="paymentDetailsModalLabel">Payment Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p><strong>Booking ID:</strong> <span id="modalBookingId"></span></p>
-                <p><strong>Status:</strong> <span id="modalStatus"></span></p>
-                <p><strong>Payment Amount:</strong> <span id="modalPaymentAmount"></span></p>
-                <p><strong>Order ID:</strong> <span id="modalOrderId"></span></p>
-                <p><strong>Payer ID:</strong> <span id="modalPayerId"></span></p>
-                <p><strong>Payment Time:</strong> <span id="modalPaymentTime"></span></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div> -->
+
 
 <?php
 require_once "includes/footer.php";
 ?>
-<script>
-$(document).ready(function (){
-$(".view_data").click(function(e){
-    e.preventDefault();
 
-    var booking_id = $(this).data('booking-id');
-    console.log(booking_id);
-})
-})
-</script>
 

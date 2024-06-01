@@ -20,9 +20,9 @@ class Payments {
     
     public function getPaymentDetailsByBookingId($booking_id) {
         global $connection;
-        $sql = "SELECT * FROM payments WHERE booking_id = ?";
+        $sql = "SELECT * FROM payments WHERE booking_id = :booking_id";
         $stmt = $connection->prepare($sql);
-        $stmt->bind_param("i", $booking_id);
+        $stmt->bindParam(":booking_id", $booking_id);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }

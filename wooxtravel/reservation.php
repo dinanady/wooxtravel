@@ -1,11 +1,18 @@
 <?php
 require_once "includes/header.php";
 require_once __DIR__ . "/Model/city.php";
-$cities = new city("","","","","","");
-$allcities  = $cities->getAllCities();
-$id = $_GET['id'];
-$onlycity = $cities->getcity($id);
+if(isset($_SESSION['id'])){
 
+ $cities = new city("","","","","","");
+ $allcities  = $cities->getAllCities();
+  $id = $_GET['id'];
+$onlycity = $cities->getcity($id);
+}
+
+else{
+  header("Location: http://localhost/travel/wooxtravel/wooxtravel/auth/login.php");
+  exit;
+}
 
 ?>
 
@@ -16,7 +23,7 @@ $onlycity = $cities->getcity($id);
           <h4>Book Prefered Deal Here</h4>
           <h2>Make Your Reservation</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt uttersi labore et dolore magna aliqua is ipsum suspendisse ultrices gravida</p>
-          <div class="main-button"><a href="home.php">Discover More</a></div>
+          <div class="main-button"><a href="index.php">Discover More</a></div>
         </div>
       </div>
     </div>

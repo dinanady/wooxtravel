@@ -1,6 +1,6 @@
 
 <footer>
-  <div class="container">
+  <div class="container fixed -bottom">
     <div class="row">
       <div class="col-lg-12 text-center">
         <p>Copyright © 2036 <a href="#">WoOx Travel</a> Company. All rights reserved.

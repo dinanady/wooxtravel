@@ -30,7 +30,10 @@ $count = 1;
                     <th scope="row"><?php echo $count;?></th>
                     <td><?php echo $user['name'];?></td>
                     <td><?php echo $user['email'];?></td>
-                    <td><a href="../crud_admin/delete_user.php?id=<?php echo $user['id'];?>" class="btn btn-danger  text-center ">Delete</a></td>
+                    <td>
+                      <a href="../crud_admin/delete_user.php?id=<?php echo $user['id'];?>" class="btn btn-danger  text-center ">Delete</a>
+                      <a href="edit-user.php?id=<?php echo $user['id'];?>" class="btn btn-info  text-center ">Edit</a>
+                  </td>
                   </tr>
                   <?php $count++;?>
                   <?php endforeach;?>

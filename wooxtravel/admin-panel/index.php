@@ -5,7 +5,7 @@ require_once __DIR__ .("/../Model/city.php");
 require_once __DIR__ .("/../Model/bookings.php");
 require_once __DIR__ .("/../Model/Person.php");
 $users = new Person("","","","");
-$allusers = $users->numderOfUsers();
+$allusers = $users->numberOfUsers();
 $bookings = new bookings("", "", "", "", "", "", "", "", ""); 
 $ALLbookings = $bookings->numderOfbooking();
 $cities = new city("", "", "", "", "", "");
@@ -15,7 +15,7 @@ $allcountries = $countries->numderOfCountries();
 
 
 ?>
-   <link href="styles/style.css" rel="stylesheet">
+  
     <div class="container-fluid mt-5">
             
       <div class="row">
@@ -23,7 +23,7 @@ $allcountries = $countries->numderOfCountries();
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Countries</h5>
-              <!-- <h6 class="card-subtitle mb-2 text-muted">Bootstrap 4.0.0 Snippet by pradeep330</h6> -->
+             
               <p class="card-text">number of countries: <?php echo $allcountries;?></p>
              
             </div>
