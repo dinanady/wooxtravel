@@ -12,7 +12,7 @@ if (isset($_GET['id'])) {
 }
 ?>
 
-<div class="container text-center" style="padding: 50px; width: 700px; height: 55vh; margin: auto; margin-top:170px;">
+<div class="container text-center" style="padding: 50px; width: 700px; height: 60vh; margin: auto; margin-top:170px;">
     <!-- Replace "test" with your own sandbox Business account app client ID -->
     <script src="https://www.paypal.com/sdk/js?client-id=AUK-XcLe0EDsJ4EuEYYhOfAnxjQbmeQNbup_Kv-XNMd_w9hr_XhRzQv4aORuAL5iMjsdimR6twbYtJyN&currency=USD"></script>
     <!-- Set up a container element for the button -->

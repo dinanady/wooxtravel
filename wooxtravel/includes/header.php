@@ -49,7 +49,7 @@ define("AppUrl","http://localhost/travel/wooxtravel/wooxtravel");
                           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                            <li><a class="dropdown-item text-dark" href="<?php echo AppUrl; ?>/mybooking.php">My Reservation</a></li>
                          <?php if ( $_SESSION["role"]==="admin"):?>
-                        <li><a class="dropdown-item text-dark" href="<?php echo AppUrl; ?>/admin-panel/index.php">dashbord</a></li>
+                        <li><a class="dropdown-item text-dark" href="<?php echo AppUrl; ?>/admin-panel/index.php">Dashboard</a></li>
                       <?php endif; ?>
                      <li><hr class="dropdown-divider"></li>
                        <li><a class="dropdown-item text-dark" href="<?php echo AppUrl; ?>/Controllers/logout.php">Logout</a></li>

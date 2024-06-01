@@ -23,7 +23,7 @@ $count = 1;
                     <th scope="col">image</th>
                     <th scope="col">trip_days</th>
                     <th scope="col">price</th>
-                    <th scope="col">delete</th>
+                    <th scope="col">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -35,7 +35,7 @@ $count = 1;
                     <td><img src ="../../assets/images/<?php echo $city['image'];?>" width="50" height="50"> </td>
                     <td><?php echo $city['trip_days'];?></td>
                     <td>$<?php echo $city['price'];?></td>
-                     <td><a href="../crud_admin/delete_city.php?id=<?php echo $city['id'];?>" class="btn btn-danger  text-center ">delete</a>
+                     <td><a href="../crud_admin/delete_city.php?id=<?php echo $city['id'];?>" class="btn btn-danger  text-center ">Delete</a>
                      <a href="edit-cities.php?id=<?php echo $city['id'];?>" class="btn btn-info  text-center ">Edit</a> 
                     </td>
 

@@ -17,7 +17,7 @@ $payments = new payments();
 $count = 1;
 ?>
 
-<div class="container-fluid my-5 " style="height:70vh;">
+<div class="container-fluid my-5 " style="height:75vh;">
 <div class="row">
         <div class="col">
           <div class="card mt-5">
@@ -56,12 +56,11 @@ $count = 1;
                         <td>
                         <?php if( $booking['status'] ==='pending'):?>
                       <span class="badge bg-info text-light"><?php echo $booking['status'];?> </span>
-                       <?php elseif( $booking['status'] ==='paid'): ?>  
+                       <?php elseif( $booking['status'] ==='paid'||$booking['status'] ==='accept'): ?>  
                     <span class="badge bg-success text-light"><?php echo $booking['status'];?></span>
                     <?php elseif( $booking['status'] ==='reject'): ?>
                      <span class="badge bg-danger text-light"><?php echo $booking['status'];?></span>
-                      <?php elseif( $booking['status'] ==='accept'): ?>
-                        <span class="badge bg-Secondary text-light"><?php echo $booking['status'];?></span>
+                     
                      <?php endif; ?>
                         </td>
                         <td>
