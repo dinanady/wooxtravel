@@ -26,7 +26,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
         $lowwnd_item = strtolower($end_item);
         $country  = $countries-> getcountryByName($name);{
             if($country){
-                $error['country_add'] = "the country is already excsiste";
+                $error['country_add'] = "The Country already exists";
                 $_SESSION['error_country']=  $error['country_add'];
                 header("location:../countries-admins/create-country.php");
                 exit;

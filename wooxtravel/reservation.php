@@ -103,21 +103,23 @@ else{
                 </fieldset>
               </div>
               <div class="col-lg-12">
+              <?php if(isset($_GET['id'])) :?>
+                <input type="hidden" name="destination" value="<?php echo $_GET['id']?>">
+                <?php elseif(empty($_GET['id'])):?>
                   <fieldset>
                       <label for="chooseDestination" class="form-label">Choose Your Destination</label>
                       <select name="destination" class="form-select" aria-label="Default select example" id="chooseCategory" onChange="this.form.click()">
-                        <?php if(isset($_GET['id'])) :?>
-                          <option value ="<?php echo $_GET['id']?>"><?php echo $onlycity['name'] ?></option>
-                          <?php endif ;?>
-                          <?php if(empty($_GET['id'])) :?>
+                        
+                        
                           <?php foreach($allcities as $city ):?>
-                             
+        
                             
                           <option value="<?php echo $city['city_id'] ?>"><?php echo $city['nameofcountry'].",".$city['nameofcity'] ?></option>
                           <?php endforeach ;?>
-                          <?php endif ;?>
+                       
                       </select>
                   </fieldset>
+                  <?php endif ;?>
               </div>
               <div class="col-lg-12">                        
                   <fieldset>

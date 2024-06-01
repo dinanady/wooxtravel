@@ -34,7 +34,7 @@ if(isset( $_SESSION["Email"])){
                
                 <fieldset>
                     <label for="Name" class="form-label">Your Password</label>
-                    <input type="text" name="password" class="Name" placeholder="password" autocomplete="on" >
+                    <input type="password" name="password" class="Name" placeholder="password" autocomplete="on" >
                 </fieldset>
               </div>
               <div class="col-lg-12">                        
