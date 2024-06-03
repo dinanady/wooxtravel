@@ -1,7 +1,14 @@
 
 <?php
 require_once __DIR__ . "/../../config/session_config.php";
-define("AppUrl","http://localhost/travel/wooxtravel/wooxtravel");
+if(isset($_SESSION['role'])&& $_SESSION['role']=='admin'){
+  
+  define("AppUrl","http://localhost/travel/wooxtravel/wooxtravel");
+}
+else{
+  header("location:../../auth/login.php");
+  exit;
+}
 
 ?>
 
@@ -29,7 +36,7 @@ define("AppUrl","http://localhost/travel/wooxtravel/wooxtravel");
       </button>
 
       <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav side-nav" >
+        <ul class="navbar-nav side-nav " style ="background: #2d2d2e;" >
           <li class="nav-item">
             <a class="nav-link" style="margin-left: 20px;" href="<?php echo AppUrl; ?>/admin-panel/index.php">Home
               <span class="sr-only">(current)</span>

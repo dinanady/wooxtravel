@@ -44,7 +44,7 @@ unset($_SESSION["errors"]);
 
                         <!-- Password input -->
                         <div class="form-outline mb-4">
-                            <input type="password" name="password" id="form2Example1" class="form-control" placeholder="Password" value="<?php echo $user['password']; ?>" />
+                            <input type="password" name="password" id="form2Example1" class="form-control" placeholder="Password" value="" />
                             <?php if (!empty($error["Password_empty"])) : ?>
                                 <span class="text-danger"><?php echo $error["Password_empty"]; ?></span>
                             <?php endif; ?>

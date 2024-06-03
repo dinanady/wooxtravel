@@ -80,14 +80,26 @@ class Person {
 
     public function updateUser($id, $username, $email, $password, $role) {
         global $connection;
-        $sql = "UPDATE users SET name = ?, email = ?, password = ?, role = ? WHERE id = ?";
-        $stmt = $connection->prepare($sql);
-        $stmt->bindParam(1, $username);
-        $stmt->bindParam(2, $email);
-        $stmt->bindParam(3, $password);
-        $stmt->bindParam(4, $role);
-        $stmt->bindParam(5, $id);
-        return $stmt->execute();
+        if ($password) {
+            $sql = "UPDATE users SET name = ?, email = ?, password = ?, role = ? WHERE id = ?";
+            $hashedPassword = sha1($password);
+            $stmt = $connection->prepare($sql);
+            $stmt->bindParam(1, $username);
+            $stmt->bindParam(2, $email);
+            $stmt->bindParam(3, $hashedPassword);
+            $stmt->bindParam(4, $role);
+            $stmt->bindParam(5, $id);
+        } else {
+            $sql = "UPDATE users SET name = ?, email = ?, role = ? WHERE id = ?";
+            $stmt = $connection->prepare($sql);
+            $stmt->bindParam(1, $username);
+            $stmt->bindParam(2, $email);
+            $stmt->bindParam(3, $role);
+            $stmt->bindParam(4, $id);
+        }
+        $stmt->execute();
     }
+    
+
 }
 ?>

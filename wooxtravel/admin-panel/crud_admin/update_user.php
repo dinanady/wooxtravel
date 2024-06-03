@@ -27,22 +27,19 @@ if (isset($_POST["submit"])) {
         $error["Email_invalid"] = "Email is invalid";
     }
 
-    // Only hash the password if it's not empty
-    $hashedPassword = !empty($password) ? sha1($password) : null;
-
     if (empty($error)) {
         try {
             $person = new Person($username, $email, $password, $role);
             
             // Fetch current user's email
-            $currentUser = $person->getUserById($id);
+            $currentUser = $person->getUserByID($id);
             
             // Check if the email is already taken by another user
             if ($email != $currentUser['email'] && repeate_Email($email)) {
                 $error["Email_taken"] = "Email is already taken";
             } else {
                 // Update the user
-                $person->updateUser($id, $username, $email, $hashedPassword, $role);
+                $person->updateUser($id, $username, $email, $password, $role);
                 header("location: ../users/users.php");
                 exit();
             }

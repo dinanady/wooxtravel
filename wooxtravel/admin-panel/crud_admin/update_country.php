@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $countrybyName = $country->getcountryByName($name);
       
         if ( $countrybyName && $countrybyName ['id'] != $id) {
-            $error['city_add'] = "The Countr already exists";
+            $error['city_add'] = "The Country already exists";
             $_SESSION['error_country'] = $error['city_add'];
             header("location:../countries-admins/edit-country.php?id=$id");
             exit;

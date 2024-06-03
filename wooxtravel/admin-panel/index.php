@@ -4,6 +4,7 @@ require_once __DIR__ .("/../Model/country.php");
 require_once __DIR__ .("/../Model/city.php");
 require_once __DIR__ .("/../Model/bookings.php");
 require_once __DIR__ .("/../Model/Person.php");
+
 $users = new Person("","","","");
 $allusers = $users->numberOfUsers();
 $bookings = new bookings("", "", "", "", "", "", "", "", ""); 
