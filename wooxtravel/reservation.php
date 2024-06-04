@@ -10,7 +10,7 @@ $onlycity = $cities->getcity($id);
 }
 
 else{
-  header("Location: http://localhost/travel/wooxtravel/wooxtravel/auth/login.php");
+  header("Location: http://localhost/wooxtravel/wooxtravel/auth/login.php");
   exit;
 }
 

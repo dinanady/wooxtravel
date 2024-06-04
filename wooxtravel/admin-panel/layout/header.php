@@ -3,7 +3,7 @@
 require_once __DIR__ . "/../../config/session_config.php";
 if(isset($_SESSION['role'])&& $_SESSION['role']=='admin'){
   
-  define("AppUrl","http://localhost/travel/wooxtravel/wooxtravel");
+  define("AppUrl","http://localhost/wooxtravel/wooxtravel");
 }
 else{
   header("location:../../auth/login.php");

@@ -5,7 +5,7 @@ require_once __DIR__ . "/Model/payment.php";
 
 if (!isset($_SESSION['id'])) {
     // Redirect to login page if user is not logged in
-    header("Location: http://localhost/travel/wooxtravel/wooxtravel/auth/login.php");
+    header("Location: http://localhost/wooxtravel/wooxtravel/auth/login.php");
     exit;
 }
 
