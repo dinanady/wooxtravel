@@ -3,7 +3,7 @@
   <div class="container fixed -bottom">
     <div class="row">
       <div class="col-lg-12 text-center">
-        <p>Copyright © <?php echo date("Y");?> <a href="#">WoOx Travel</a> 
+        <p>Copyright © <?php echo date("Y");?> <a href="../index.php">WoOx Travel</a> 
          
       </div>
     </div>

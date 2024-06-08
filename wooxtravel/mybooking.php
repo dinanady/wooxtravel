@@ -17,7 +17,7 @@ $payments = new payments();
 $count = 1;
 ?>
 
-<div class="container-fluid my-5 " style="height:75vh;">
+<div class="container-fluid my-5 " style="height:80vh;">
 <div class="row">
         <div class="col">
           <div class="card mt-5">
